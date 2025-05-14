@@ -1,0 +1,46 @@
+# Diretórios do Maven e Gradle
+target/
+*.jar
+*.war
+*.ear
+
+# Build do Gradle
+build/
+
+# Configuração do Maven Wrapper
+.mvn/
+mvnw
+mvnw.cmd
+
+# Arquivos do IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+*.class
+*.log
+
+# Arquivos do Eclipse
+.classpath
+.project
+.settings/
+
+# Arquivos do VS Code
+.vscode/
+
+# Arquivos temporários do sistema
+Thumbs.db
+.DS_Store
+
+# Arquivos de logs
+logs/
+*.log
+
+# Configuração de ambiente
+.env
+application*.properties
+application*.yml
+
+# Banco de dados H2
+*.mv.db
+*.h2.db
