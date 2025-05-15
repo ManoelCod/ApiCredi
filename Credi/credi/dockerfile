@@ -1,0 +1,14 @@
+# Usando a imagem oficial do OpenJDK 24 (quando disponível)
+FROM openjdk:24-jdk-slim
+
+# Definir diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copiar o arquivo .jar gerado para dentro do container
+COPY target/*.jar app.jar
+
+# Expor a porta 8080 para acesso externo
+EXPOSE 8080
+
+# Comando para executar a aplicação
+ENTRYPOINT ["java", "-jar", "app.jar"]
