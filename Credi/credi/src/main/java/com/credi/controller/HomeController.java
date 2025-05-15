@@ -1,4 +1,4 @@
-package com.credi.credi.controller;
+package com.credi.controller;
 
 import org.springframework.web.bind.annotation.*;
 
