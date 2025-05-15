@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   api:
-    image: meuusuario/minha-api:latest  # Substitua pela sua imagem da API
+    image: apicred:latest  # Sua nova imagem da API
     container_name: api_container
     build: .
     ports:
@@ -19,12 +19,14 @@ services:
 
   db:
     image: postgres:latest
+    ports:
+      - "5433:5432" # Mapeando a porta 5432 do container para a 5433 do host
     container_name: postgres_container
     restart: always
     environment:
       POSTGRES_DB: bdcompras
       POSTGRES_USER: jasp
-      POSTGRES_PASSWORD: 0101
+      POSTGRES_PASSWORD: 0101  # 🔥 Adicionando senha obrigatória!
     networks:
       - rede-app
 
