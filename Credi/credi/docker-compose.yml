@@ -1,15 +1,16 @@
 
 services:
   api:
-    image: apicred:latest  # Sua nova imagem da API
+    image: apicredito:latest  # Sua nova imagem da API
     container_name: api_container
     build: .
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5433/ecommece
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/ecommece
       SPRING_DATASOURCE_USERNAME: credi
       SPRING_DATASOURCE_PASSWORD: Si@010101
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
     depends_on:
       - db
     networks:
