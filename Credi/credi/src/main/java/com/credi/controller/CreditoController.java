@@ -36,10 +36,4 @@ public class CreditoController {
         }
     }
 
-    @GetMapping("/teste/{num}")
-    public ResponseEntity<List<Object[]>> testarHibernateInterceptor(@PathVariable String num) {
-        List<Object[]> resultado = creditoService.testarInterceptor(num);
-        return ResponseEntity.ok(resultado);
-    }
-
 }
