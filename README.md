@@ -21,7 +21,7 @@ A API usa PostgreSQL e carrega a estrutura do banco a partir do arquivo `init.sq
 ### 🛠 **Configuração de conexão**
 No `application.properties` ou `application.yml`, a conexão está definida como:
 ```properties
-spring.datasource.url=jdbc:postgresql://db:5432/ecommece
+spring.datasource.url=jdbc:postgresql://localhost:5433/ecommece
 spring.datasource.username=credi
 spring.datasource.password=
 spring.datasource.driver-class-name=org.postgresql.Driver
