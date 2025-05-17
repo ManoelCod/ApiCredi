@@ -23,7 +23,7 @@ No `application.properties` ou `application.yml`, a conexão está definida como
 ```properties
 spring.datasource.url=jdbc:postgresql://db:5432/ecommece
 spring.datasource.username=credi
-spring.datasource.password=Si@010101
+spring.datasource.password=
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=update
