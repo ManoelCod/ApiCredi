@@ -22,4 +22,14 @@ public class KafkaProducerService {
             logger.error("Erro ao enviar mensagem para o Kafka", e);
         }
     }
+
+    public void enviarLogAuditoria(String nomeServico, String nomeMetodo, String mensagem) {
+        String auditoria = String.format("Serviço: %s | Método: %s | Mensagem: %s", nomeServico, nomeMetodo, mensagem);
+        try {
+            kafkaTemplate.send("log_auditoria", auditoria);
+            logger.info("Log de auditoria enviado para o tópico log_auditoria: {}", auditoria);
+        } catch (Exception e) {
+            logger.error("Erro ao enviar log de auditoria para o Kafka", e);
+        }
+    }
 }

@@ -10,4 +10,10 @@ public class KafkaConsumerService {
     public void processarSolicitacaoCredito(ConsumerRecord<String, String> record) {
         System.out.println("Processando crédito: " + record.value());
     }
+
+    @KafkaListener(topics = "log_auditoria", groupId = "grupo-solicitacao-credito")
+    public void processarLogAuditoria(ConsumerRecord<String, String> record) {
+        System.out.println("Log de auditoria recebido: " + record.value());
+        // Aqui você pode adicionar lógica para persistir ou tratar o log recebido
+    }
 }

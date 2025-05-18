@@ -21,6 +21,9 @@ public class CreditoService {
     @Autowired
     private EntityManager entityManager;
 
+    @Autowired
+    private KafkaProducerService kafkaProducerService;
+
     private final CreditoRepository creditoRepository;
 
     public CreditoService(CreditoRepository creditoRepository) {
@@ -28,10 +31,18 @@ public class CreditoService {
     }
 
     public List<Credito> listarPorNumeroNfse(String numeroNfse) {
+        kafkaProducerService.enviarLogAuditoria(
+                "CreditoService",
+                "listarPorNumeroNfse",
+                "Consulta realizada para NFSe: " + numeroNfse);
         return creditoRepository.findByNumeroNfse(numeroNfse);
     }
 
     public Optional<Credito> buscarPorNumeroCredito(String numeroCredito) {
+        kafkaProducerService.enviarLogAuditoria(
+                "CreditoService",
+                "buscarPorNumeroCredito",
+                "Consulta realizada para número de crédito: " + numeroCredito);
         return Optional.ofNullable(creditoRepository.findByNumeroCredito(numeroCredito));
     }
 
