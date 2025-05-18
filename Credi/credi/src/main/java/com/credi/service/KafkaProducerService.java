@@ -4,6 +4,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.credi.factory.MensagemFactory;
 
 @Service
 public class KafkaProducerService {
@@ -24,7 +25,7 @@ public class KafkaProducerService {
     }
 
     public void enviarLogAuditoria(String nomeServico, String nomeMetodo, String mensagem) {
-        String auditoria = String.format("Serviço: %s | Método: %s | Mensagem: %s", nomeServico, nomeMetodo, mensagem);
+        String auditoria = MensagemFactory.criarLogAuditoria(nomeServico, nomeMetodo, mensagem);
         try {
             kafkaTemplate.send("log_auditoria", auditoria);
             logger.info("Log de auditoria enviado para o tópico log_auditoria: {}", auditoria);
