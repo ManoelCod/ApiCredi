@@ -31,32 +31,11 @@ public class CreditoService {
     }
 
     public List<Credito> listarPorNumeroNfse(String numeroNfse) {
-        kafkaProducerService.enviarLogAuditoria(
-                "CreditoService",
-                "listarPorNumeroNfse",
-                "Consulta realizada para NFSe: " + numeroNfse);
         return creditoRepository.findByNumeroNfse(numeroNfse);
     }
 
     public Optional<Credito> buscarPorNumeroCredito(String numeroCredito) {
-        kafkaProducerService.enviarLogAuditoria(
-                "CreditoService",
-                "buscarPorNumeroCredito",
-                "Consulta realizada para número de crédito: " + numeroCredito);
         return Optional.ofNullable(creditoRepository.findByNumeroCredito(numeroCredito));
-    }
-
-    public List<Object[]> testarInterceptor(String numeroCredito) {
-        String sql = "SELECT * FROM credito WHERE numero_credito = :numeroCredito";
-        hibernateInterceptor.inspect(sql); // Intercepta a consulta
-
-        Query query = entityManager.createNativeQuery(sql);
-        query.setParameter("numeroCredito", numeroCredito);
-
-        List<Object[]> resultado = query.getResultList();
-        System.out.println("Resultado da consulta: " + resultado); // Debug no console
-
-        return resultado; // Retorna os dados para o Controller
     }
 
 }
