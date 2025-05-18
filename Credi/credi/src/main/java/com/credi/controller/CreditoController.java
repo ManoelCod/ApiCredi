@@ -2,6 +2,7 @@ package com.credi.controller;
 
 import com.credi.model.Credito;
 import com.credi.service.CreditoService;
+import com.credi.service.KafkaProducerService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,12 @@ import java.util.Optional;
 public class CreditoController {
 
     private final CreditoService creditoService;
+    private final KafkaProducerService kafkaProducerService;
 
-    public CreditoController(CreditoService creditoService) {
+    public CreditoController(CreditoService creditoService, KafkaProducerService kafkaProducerService) {
         this.creditoService = creditoService;
+        this.kafkaProducerService = kafkaProducerService;
+
     }
 
     @GetMapping("/{numeroNfse}")
@@ -34,6 +38,13 @@ public class CreditoController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
+    }
+
+    @PostMapping("/solicitar")
+    public String solicitarCredito(@RequestParam String clienteId, @RequestParam double valor) {
+        String evento = "Cliente: " + clienteId + ", Valor: " + valor;
+        kafkaProducerService.enviarSolicitacaoCredito(evento);
+        return "Solicitação de crédito enviada!";
     }
 
 }
